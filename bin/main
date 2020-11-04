@@ -14,6 +14,7 @@ class Player
 end
 
 class Game
+  @@valid_cells = ['a1','a2','a3','b1','b2','b3','c1','c2','c3']
   def initialize
     print 'Enter player one name '
     @player_one = Player.new(gets.chomp.capitalize, 'X')
@@ -42,9 +43,12 @@ class Game
 
   def play(player)
     puts "#{player.name}'s turn. Enter cell value (e.g A1 or C2)"
-    current_input = gets.chomp
+    current_input = gets.chomp.downcase
 
-    # check if input is valid and push to player.inputs
+    # check if input is in @@valid_cells  and if input is not already in player one...
+    # or player two's inputs then push to player.inputs else display message below
+    puts = "Enter a valid Input"
+
     player.inputs << current_input
   end
 
