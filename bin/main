@@ -1,3 +1,67 @@
 #!/usr/bin/env ruby
 
-puts 'Hello World!'
+puts "Welcome to Tic-Tac-Toe!\n"
+
+class Player
+  attr_reader :name, :type
+  attr_accessor :inputs
+
+  def initialize(name, type)
+    @name = name
+    @type = type
+    @inputs = []
+  end
+end
+
+class Game
+  def initialize
+    print 'Enter player one name '
+    @player_one = Player.new(gets.chomp.capitalize, 'X')
+    system('clear')
+    print 'Enter player two name '
+    system('clear')
+    @player_two = Player.new(gets.chomp.capitalize, 'O')
+    start
+  end
+
+  def start
+    game_board
+    turn = 1
+
+    while turn < 9
+      current_player = turn.odd? ? @player_one : @player_two
+      play(current_player)
+      # If current_player.inputs > 2
+      # check if player has won, stop game and display win message
+      turn += 1
+    end
+
+    puts 'Player has won or tied'
+    puts 'Press `r` to play again, press `q` to quit'
+  end
+
+  def play(player)
+    puts "#{player.name}'s turn. Enter cell value (e.g A1 or C2)"
+    current_input = gets.chomp
+
+    # check if input is valid and push to player.inputs
+    player.inputs << current_input
+  end
+
+  def game_board
+    @a = [1, 2, 3]
+    @b = [4, 5, 6]
+    @c = [7, 8, 9]
+
+    puts ' -------------'
+    puts 'A |   |   |   |'
+    puts ' -------------'
+    puts 'B |   |   |   |'
+    puts ' -------------'
+    puts 'C |   |   |   |'
+    puts ' -------------'
+    puts '  1    2    3'
+  end
+end
+
+#  new_game = Game.new
