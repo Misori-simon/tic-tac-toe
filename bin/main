@@ -48,7 +48,11 @@ while turn < 9
 
   system('clear')
   display_board
-  puts "\n#{[player_one, player_two].sample} has won\n\n"
+  if %w[win draw].sample == 'win'
+    puts "\n#{[player_one, player_two].sample} has won\n\n"
+  else
+    puts 'Game was a tie'
+  end
   puts "\nPress `S` to play again, any key to quit"
   response = gets.chomp.downcase
   puts response == 's' ? 'You have chosen to play again' : 'Thank you for playing'
