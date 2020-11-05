@@ -1,71 +1,55 @@
 #!/usr/bin/env ruby
+puts 'Welcome to Tic-Tac-Toe!'
+puts "**********************\n\n"
 
-puts "Welcome to Tic-Tac-Toe!\n"
+print 'Enter player one name '
+player_one = gets.chomp.capitalize
+puts "#{player_one} is X"
 
-class Player
-  attr_reader :name, :type
-  attr_accessor :inputs
+print 'Enter player two name '
+player_two = gets.chomp.capitalize
+puts "#{player_two} is O"
+sleep(1)
+system('clear')
 
-  def initialize(name, type)
-    @name = name
-    @type = type
-    @inputs = []
-  end
+turn = 1
+
+def display_board
+  puts '----------------'
+  puts '| A1 | A2 | A3 |'
+  puts '----------------'
+  puts '| B1 | B2 | B3 |'
+  puts '----------------'
+  puts '| C1 | C2 | C3 |'
+  puts '----------------'
 end
 
-class Game
-  @@valid_cells = ['a1','a2','a3','b1','b2','b3','c1','c2','c3']
-  def initialize
-    print 'Enter player one name '
-    @player_one = Player.new(gets.chomp.capitalize, 'X')
-    system('clear')
-    print 'Enter player two name '
-    system('clear')
-    @player_two = Player.new(gets.chomp.capitalize, 'O')
-    start
-  end
-
-  def start
-    game_board
-    turn = 1
-
-    while turn < 9
-      current_player = turn.odd? ? @player_one : @player_two
-      play(current_player)
-      # If current_player.inputs > 2
-      # check if player has won, stop game and display win message
-      turn += 1
-    end
-
-    puts 'Player has won or tied'
-    puts 'Press `r` to play again, press `q` to quit'
-  end
-
-  def play(player)
-    puts "#{player.name}'s turn. Enter cell value (e.g A1 or C2)"
-    current_input = gets.chomp.downcase
-
-    # check if input is in @@valid_cells  and if input is not already in player one...
-    # or player two's inputs then push to player.inputs else display message below
-    puts = "Enter a valid Input"
-
-    player.inputs << current_input
-  end
-
-  def game_board
-    @a = [1, 2, 3]
-    @b = [4, 5, 6]
-    @c = [7, 8, 9]
-
-    puts ' -------------'
-    puts 'A |   |   |   |'
-    puts ' -------------'
-    puts 'B |   |   |   |'
-    puts ' -------------'
-    puts 'C |   |   |   |'
-    puts ' -------------'
-    puts '  1    2    3'
-  end
+def valid?
+  [true, false].sample
 end
 
-#  new_game = Game.new
+while turn < 9
+  current_player = turn.odd? ? player_one : player_two
+  display_board
+  puts "\nIt's #{current_player}'s turn, make a move (e.g A1, C2)"
+  move = gets.chomp.downcase
+
+  if valid?
+    puts "#{current_player} moved to cell #{move}"
+    sleep(1)
+    turn += 1
+    system('clear')
+  else
+    system('clear')
+    puts "Invalid move, try again. Valids are e.g A1, C2\n"
+  end
+
+  next unless turn == 9
+
+  system('clear')
+  display_board
+  puts "\n#{[player_one, player_two].sample} has won\n\n"
+  puts "\nPress `S` to play again, any key to quit"
+  response = gets.chomp.downcase
+  puts response == 's' ? 'You have chosen to play again' : 'Thank you for playing'
+end
