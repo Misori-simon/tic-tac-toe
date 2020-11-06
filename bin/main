@@ -27,7 +27,11 @@ loop do
   system('clear')
 
   game = Game.new(player_one, player_two)
-  game.start { gets.chomp.strip }
+  game_result = game.start do |message|
+    print message
+    gets.chomp.strip
+  end
+  puts game_result
 
   puts "\n\n-------------------GAME OVER-------------------"
   print 'Enter `p` to play again, press any key to quit => '
