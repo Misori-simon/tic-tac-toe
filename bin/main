@@ -2,12 +2,12 @@
 require_relative '../lib/logic'
 require_relative '../lib/player'
 
-def get_name
+def request_name
   name = gets.chomp.strip.capitalize
   return name unless name.empty?
 
   print 'Enter a valid name => '
-  get_name
+  request_name
 end
 
 loop do
@@ -17,11 +17,11 @@ loop do
   puts "***********************\n\n"
 
   print 'Enter player one name => '
-  player_one = Player.new(get_name, 'X')
+  player_one = Player.new(request_name, 'X')
   puts "#{player_one.name} is X"
 
   print "\nEnter player two name => "
-  player_two = Player.new(get_name, 'O')
+  player_two = Player.new(request_name, 'O')
   puts "#{player_two.name} is O"
   sleep(1.5)
   system('clear')

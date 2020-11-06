@@ -1,11 +1,14 @@
 require 'set'
 
 class Game
+  attr_writer :current_move
+
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
     @turn = 1
     @grid = [%w[a1 a2 a3], %w[b1 b2 b3], %w[c1 c2 c3]]
+    @current_move = nil
     @winning_cases = [
       Set.new(@grid[0]),
       Set.new(@grid[1]),
@@ -16,17 +19,41 @@ class Game
       Set.new([@grid[0][0], @grid[1][1], @grid[2][2]]),
       Set.new([@grid[0][2], @grid[1][1], @grid[2][0]])
     ]
+    board_values_initializer
+  end
+
+  def board_values_initializer
+    @board_values = {
+      'a1' => "\s\s\s",
+      'a2' => "\s\s\s",
+      'a3' => "\s\s\s",
+      'b1' => "\s\s\s",
+      'b2' => "\s\s\s",
+      'b3' => "\s\s\s",
+      'c1' => "\s\s\s",
+      'c2' => "\s\s\s",
+      'c3' => "\s\s\s"
+    }
   end
 
   def draw_board
     # Draws the game board to the concole
-    puts '----------------'
-    puts '| A1 | A2 | A3 |'
-    puts '-----+----+-----'
-    puts '| B1 | B2 | B3 |'
-    puts '-----+----+-----'
-    puts '| C1 | C2 | C3 |'
-    puts '----------------'
+    puts "\n\n  -------------------"
+    puts "A | #{@board_values['a1']} | #{@board_values['a2']} | #{@board_values['a3']} |"
+    puts '  -------------------'
+    puts "B | #{@board_values['b1']} | #{@board_values['b2']} | #{@board_values['b3']} |"
+    puts '  -------------------'
+    puts "C | #{@board_values['c1']} | #{@board_values['c2']} | #{@board_values['c3']} |"
+    puts '  -------------------'
+    puts "    1     2    3    \n\n"
+  end
+
+  def update_board(value)
+    @board_values.each do |position|
+      if value == position[0]
+        @board_values[position[0].to_s] = @turn.odd? ? "\sX\s" : "\sO\s"
+      end
+    end
   end
 
   def valid_moves
@@ -42,8 +69,7 @@ class Game
 
   def move_legal?(move)
     # Check if selected cell has not already been taken by either player
-    return false if !move_valid?(move) or @player_one.moves.include?(move)
-    return false if !move_valid?(move) or @player_two.moves.include?(move)
+    return false if !move_valid?(move) or @player_one.moves.include?(move) or @player_two.moves.include?(move)
 
     true
   end
@@ -62,16 +88,17 @@ class Game
     # Makes a move for current_player
     puts "It's #{current_player.name}'s turn"
     print 'Enter your move, e.g (A1, B3) => '
-
-    move = yield
+    current_move_getter
+    move = @current_move
 
     if move_legal?(move)
       current_player.moves << move
+      update_board(move)
     else
       system('clear')
       draw_board
       puts "\nINVALID INPUT!!!. Repeat turn."
-      make_move { yield }
+      make_move
     end
   end
 
@@ -85,13 +112,17 @@ class Game
     false
   end
 
+  def current_move_getter
+    @current_move = gets.chomp.strip.downcase
+  end
+
   def start
     # Starting point of game
     tie = true
 
-    while @turn < valid_moves.length
+    while @turn <= valid_moves.length
       draw_board
-      make_move { yield }
+      make_move
       system('clear')
 
       if current_player.moves.length >= 3 and win?(current_player.moves.to_set)
