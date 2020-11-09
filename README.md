@@ -4,14 +4,12 @@
 
 > This project is about building a tic-tac-toe game for two manual players
 
-![screenshot](./app_screenshot.png)
-
-This project was divided into four main milestones
-- Project setup : This took care of the project directories and files organization
-- User Interface : This part of the project handled the game UI interactions with the player(s)
+This project was divided into four milestones
+- __Project setup__ : This took care of the project directories and files organization
+- __User Interface__ : This part of the project handled the game UI interactions with the player(s)
 displaying relevant instructions and messages based to the game logic outcome.
-- Game logic : This section of the project implemented the overall game-logic using OOP in ruby
-- Player Instruction : This part of the project provided the readme which contains a complete user guide or player instruction(s) for those who want to play the game.
+- __Game logic__ : This section of the project implemented the overall game-logic using OOP in ruby
+- __Player Instruction__ : This part of the project provided the readme which contains a complete user guide or player instruction(s) for those who want to play the game.
 ## Built With
 
 - Ruby
@@ -55,12 +53,12 @@ Tic-tac-toe is a game for two players, X and O, who take turns marking the space
 ### PLAYER INSTRUCTIONS FOR TIC-TAC-TOE GAME
 - The game requires two players
 - Upon running the main.rb file either through the live demo link or locally:
-- - ```Player One``` should enter a name
-- - ```Player two``` should also enter a name
-- ```Player One``` is assigned the symbol ```X```
-- ```Player One``` is assigned the symbol ```O```
+- - __```Player One```__ should enter a name
+- - __```Player two```__ should also enter a name
+- - __```Player One```__ is assigned the symbol __```X```__
+- - __```Player One```__ is assigned the symbol __```O```__
 - Each player  is then  asked to enter a cell location from the grid displayed on the user Interface
-- There are nine (9) accepted values
+- There are __nine (9)__ accepted values
 
 ```
     1    2    3
@@ -72,8 +70,8 @@ B | b1 | b2 | b3 |
 C | c1 | c2 | c3 |
   ----------------
 ```
-- Any valid cell location chosen by a player will be marked with e player's symbol ```X``` or ```O```
-- - If player one enters cell location ```a1``` we get
+- Any __valid__ cell location chosen by a player will be marked with the player's symbol __```X```__ or __```O```__
+- - If player one enters cell location __```a1```__ we get
 ```
     1    2    3
   ________________
@@ -84,7 +82,7 @@ B |    |    |    |
 C |    |    |    |
   ----------------
 ```
-- - If player two enters cell location ```b2``` we get
+- - If player two enters cell location __```b2```__ we get
 ```
     1    2    3
   ________________
@@ -96,7 +94,7 @@ C |    |    |    |
   ----------------
 ```
 - Player(s) cannot enter a location that is already occupied
-- - cell locations ```a1``` and ```b2``` are occupied and cannot be chosen again by either player
+- - cell locations __```a1```__ and __```b2```__ are occupied and cannot be chosen again by either player
 ```
     1    2    3
   ________________
@@ -107,8 +105,8 @@ B |    | O  |    |
 C |    |    |    |
   ----------------
 ```
-- The first player to match three successive cells either horizontally, vertically, or diagonally has won the game
-- - ```Player One``` has won (Diagonal)
+- The first player to match __three successive cells__ either _horizontally_, _vertically_, or _diagonally_ has won the game
+- - __```Player One```__ has won (_Diagonal_)
 ```
     1    2    3
   ________________
@@ -120,7 +118,7 @@ C | O  | O  | X  |
   ----------------
 ```
 
-- - ```Player Two``` has won (Vertical)
+- - __```Player Two```__ has won (_Vertical_)
 ```
     1    2    3
   ________________
@@ -131,7 +129,7 @@ B | O  | X  | O  |
 C | O  | X  | X  |
   ----------------
 ```
-- If the entire board gets filled up and no player has three (3) successive cells, the game is a tie
+- If the entire board gets filled up and no player has _three (3) successive cells_, the game is a __tie__
 ```
     1    2    3
   ________________
@@ -142,7 +140,7 @@ B | X  | O  | O  |
 C | O  | X  | X  |
   ----------------
 ```
-- The the end of the game, the player is asked to enter: ```p``` to play again or any other key to exit the game
+- At the end of the game, the player is asked to enter: __```p```__ to _play again_ or any other key to _exit_ the game
 - Thanks for playing the game
 ## Authors
 
