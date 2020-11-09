@@ -68,8 +68,6 @@ class Game
   end
 
   def start
-    tie = true
-
     while @turn <= valid_moves.length
       system('clear')
       @board.draw
@@ -81,12 +79,12 @@ class Game
       system('clear')
 
       if current_player.moves.length >= 3 and win?(current_player.moves.to_set)
-        tie = false
         return "#{current_player.name} has won the game."
       end
+
       set_turn
     end
     @board.draw
-    return 'Uh! uh!! The game is a tie' if tie
+    'Uh! uh!! The game is a tie'
   end
 end
