@@ -29,7 +29,7 @@ loop do
   game = Game.new(player_one, player_two)
   game_result = game.start do |message|
     print message
-    gets.chomp.strip
+    gets.chomp.strip.downcase
   end
   puts game_result
 
