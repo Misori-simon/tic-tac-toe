@@ -58,10 +58,10 @@ class Game
     end
   end
 
-  def win?(move_set)
-    if move_set.length >= 3
+  def win?(player)
+    if player.moves.length >= 3
       @winning_cases.each do |item|
-        return true if item.subset?(move_set)
+        return true if item.subset?(player.moves.to_set)
       end
     end
     false
@@ -78,9 +78,7 @@ class Game
       end
       system('clear')
 
-      if current_player.moves.length >= 3 and win?(current_player.moves.to_set)
-        return "#{current_player.name} has won the game."
-      end
+      return "#{current_player.name} has won the game." if win?(current_player)
 
       set_turn
     end
