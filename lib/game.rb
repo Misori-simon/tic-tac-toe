@@ -21,7 +21,7 @@ class Game
   end
 
   def valid_moves
-    [*@grid[0], *@grid[1], *@grid[2]]
+    @grid.flatten
   end
 
   def move_valid?(move)
