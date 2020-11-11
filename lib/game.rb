@@ -2,8 +2,6 @@ require 'set'
 require_relative 'board'
 
 class Game
-  attr_writer :current_move
-
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
